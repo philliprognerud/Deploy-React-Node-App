@@ -1,0 +1,22 @@
+FROM keymetrics/pm2:8-alpine
+
+#Copy dependencies & config files
+COPY package.json .
+COPY package-lock.json .
+
+#Install app dependencies
+RUN npm install --production
+
+#Copy app src to container _after_ npm install so that
+#Application code changes don't bust the docker cache of npm install step
+COPY src src/
+
+#Set and expose port
+ENV PORT 8000
+EXPOSE 8000
+
+#Show current folder structure
+RUN cd src/ && ls -a
+
+#Start PM2 Process
+CMD ["pm2-runtime", "src/app.js"]

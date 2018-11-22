@@ -1,0 +1,13 @@
+#NPM dependencies
+node_modules
+
+#Git
+.git
+.gitignore
+
+#Build folder
+build
+
+#Docker config
+Dockerfile*
+docker*

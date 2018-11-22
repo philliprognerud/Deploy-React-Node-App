@@ -1,0 +1,10 @@
+version: '3'
+services:
+  nodejs:
+    image: nodejs_pm2:1.00
+    container_name: NODE_CONTAINER
+    ports:
+      - "8000:8000"
+    build:
+      context: ./nodejs
+      dockerfile: Dockerfile-nodejs 

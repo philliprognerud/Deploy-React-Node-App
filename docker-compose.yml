@@ -1,10 +1,28 @@
 version: '3'
+networks:
+  isolation-network:
+    driver: bridge
+
 services:
+
   nodejs:
     image: nodejs_pm2:1.00
-    container_name: NODE_CONTAINER
-    ports:
-      - "8000:8000"
+    container_name: node_container
     build:
       context: ./nodejs
-      dockerfile: Dockerfile-nodejs 
+      dockerfile: Dockerfile-nodejs
+    networks:
+      - isolation-network
+
+  react:
+    image: react_nginx:1.00
+    container_name: react_container
+    ports:
+      - "80:3000"
+    build:
+      context: ./react-app
+      dockerfile: Dockerfile-react
+    depends_on:
+      - nodejs
+    networks:
+      - isolation-network

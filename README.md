@@ -1,4 +1,4 @@
-# Deploy-React-Node-App
+# Docker-Nginx-Node
 Deploy **production ready** Nginx/React Application and NodeJS backend.
 
 ### Dependencies
